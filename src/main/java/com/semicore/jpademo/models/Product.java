@@ -18,12 +18,16 @@ public class Product {
         @Column(name = "prod_price")
         private double price;
 
+        @Column(name = "prod_cat")
+        private String category;
+
         public Product() {
         }
 
-        public Product(Long id, String name, String description, double price) {
+        public Product(Long id, String name, String category, String description, double price) {
             this.id = id;
             this.name = name;
+            this.category = category;
             this.description = description;
             this.price = price;
         }
@@ -58,5 +62,13 @@ public class Product {
 
         public void setPrice(double price) {
             this.price = price;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
         }
 }

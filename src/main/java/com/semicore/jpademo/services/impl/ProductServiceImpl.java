@@ -51,4 +51,24 @@ public class ProductServiceImpl implements ProductService {
     public Product findProductById(String id) {
         return productRepository.findById(Long.parseLong(id)).orElse(null);
     }
+
+    @Override
+    public Product findProductByName(String name) {
+        return productRepository.findByName(name);
+    }
+
+    @Override
+    public List<Product> findProductsByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+
+    @Override
+    public List<Product> findProductsByNameAndCategory(String name, String category) {
+        return productRepository.findByNameAndCategory(name, category);
+    }
+
+    @Override
+    public List<Product> getProductWithNameAndPriceGreaterThan(String name, double price) {
+        return productRepository.getProductWithNameAndPriceGreaterThan(name, price);
+    }
 }

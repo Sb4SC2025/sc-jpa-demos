@@ -35,6 +35,19 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
+
+    @GetMapping("/name/{productname}")
+    public Product findProductByName(@PathVariable(name = "productname") String name) {
+        // Implementation to get a product by name
+        return productService.findProductByName(name);
+    }
+
+    @GetMapping("/category/{productcategory}")
+    public List<Product> findProductsByCategory(@PathVariable(name = "productcategory") String category) {
+        // Implementation to get products by category
+        return productService.findProductsByCategory(category);
+    }
+
     //@RequestMapping(path = "/products/add", method = RequestMethod.POST, consumes = "application/json")
     //@RequestMapping(path = "/add", method = RequestMethod.POST, consumes = "application/json")
     @PostMapping("/add")
@@ -59,5 +72,17 @@ public class ProductController {
         // Implementation to delete a product by ID
         return productService.deleteProduct(productid);
     }
+
+    @GetMapping("/search/{name}/{category}")
+    public List<Product> findProductsByNameAndCategory(@PathVariable String name, @PathVariable String category) {
+        // Implementation to get products by name and category
+        return productService.findProductsByNameAndCategory(name, category);
+    }
+
+        @GetMapping("/search/nameandprice/{name}/{price}")
+    public List<Product> getProductWithNameAndPriceGreaterThan(@PathVariable String name, @PathVariable double price) {
+        // Implementation to get products with name and price greater than specified value
+        return productService.getProductWithNameAndPriceGreaterThan(name, price);
+        }
 
 }
