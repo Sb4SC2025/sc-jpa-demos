@@ -37,7 +37,7 @@ public class ProductController {
 
 
     @GetMapping("/name/{productname}")
-    public Product findProductByName(@PathVariable(name = "productname") String name) {
+    public List<Product>  findProductByName(@PathVariable(name = "productname") String name) {
         // Implementation to get a product by name
         return productService.findProductByName(name);
     }
@@ -79,10 +79,16 @@ public class ProductController {
         return productService.findProductsByNameAndCategory(name, category);
     }
 
-        @GetMapping("/search/nameandprice/{name}/{price}")
+    @GetMapping("/search/nameandprice/{name}/{price}")
     public List<Product> getProductWithNameAndPriceGreaterThan(@PathVariable String name, @PathVariable double price) {
         // Implementation to get products with name and price greater than specified value
         return productService.getProductWithNameAndPriceGreaterThan(name, price);
-        }
+    }
+
+    @GetMapping("/search/nameandpricerange/{name}/{lower}/{upper}")
+    public List<Product> getProductWithNameAndPriceRange(@PathVariable String name, @PathVariable double lower, @PathVariable double upper) {
+        // Implementation to get products with name and price in the specified range
+        return productService.getProductWithNameAndPriceRange(name, lower, upper);
+    }
 
 }

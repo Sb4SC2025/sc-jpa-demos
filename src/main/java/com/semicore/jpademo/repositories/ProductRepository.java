@@ -10,12 +10,15 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
-    Product findByName(String name);
+    List<Product> findByName(String name);
     List<Product> findByCategory(String category);
     List<Product> findByNameAndCategory(String name, String category);
 
     //@Query(name = "getbyNameAndPrice", value="SELECT p FROM Product p  WHERE name = :name and price > :price") // JPQL query
-    List<Product> getProductWithNameAndPriceGreaterThan(@Param("name")String name, @Param("price") double price);
+   // List<Product> getProductWithNameAndPriceGreaterThan(@Param("name")String name, @Param("prodprice") double price);
+    List<Product> getProductWithNameAndPriceGreaterThan(@Param("price") double price, @Param("name") String name);
 
-    List<Product> getProductWithNameAndPriceGreaterThanNative(@Param("name")String name, @Param("price") double price);
+    List<Product> getProductWithNameAndPriceRange(@Param("name")String name, @Param("lower") double lowerPrice, @Param("upper") double upperPrice);
+
+   List<Product> getProductWithNameAndPriceGreaterThanNative(@Param("name")String name, @Param("price") double price);
 }

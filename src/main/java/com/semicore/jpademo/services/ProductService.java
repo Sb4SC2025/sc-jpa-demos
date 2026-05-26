@@ -10,8 +10,9 @@ public interface ProductService {
     String modifyProduct(Product product);
     String deleteProduct(String productid);
     Product findProductById(String id);
-    Product findProductByName(String name);
+    List<Product>  findProductByName(String name);
     List<Product> findProductsByCategory(String category);
     List<Product> findProductsByNameAndCategory(String name, String category);
     List<Product> getProductWithNameAndPriceGreaterThan(String name, double price);
+    List<Product> getProductWithNameAndPriceRange(String name, double lowePrice, double upperPrice);
 }

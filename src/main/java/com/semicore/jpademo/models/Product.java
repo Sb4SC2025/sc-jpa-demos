@@ -5,8 +5,16 @@ import org.springframework.data.jpa.repository.Query;
 
 @Entity
 @Table(name = "products")
-@NamedQuery(name = "Product.getProductWithNameAndPriceGreaterThan",
-        query="SELECT p FROM Product p  WHERE name = :name and price > :price") // JPQL query
+@NamedQueries({
+        @NamedQuery(name = "Product.getProductWithNameAndPriceGreaterThanWithPositionalParams",
+                query="SELECT p FROM Product p  WHERE name = ?1 and price > ?2"),// JPQL query with positional parameters
+        @NamedQuery(name = "Product.getProductWithNameAndPriceGreaterThan",
+                query="SELECT p FROM Product p  WHERE name = :name and price > :price"),// JPQL query with named parameters
+
+        @NamedQuery(name = "Product.getProductWithNameAndPriceRange",
+                query="SELECT p FROM Product p  WHERE name = :name and price > :lower and price < :upper")
+})
+
 @NamedNativeQuery(name = "Product.getProductWithNameAndPriceGreaterThanNative",
         query="SELECT * FROM products  WHERE prod_name = :name and prod_price > :price",
 resultClass = Product.class) // Native SQL query

@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductByName(String name) {
+    public List<Product>  findProductByName(String name) {
         return productRepository.findByName(name);
     }
 
@@ -69,7 +69,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProductWithNameAndPriceGreaterThan(String name, double price) {
-        //return productRepository.getProductWithNameAndPriceGreaterThan(name, price);
+        //return productRepository.getProductWithNameAndPriceGreaterThan(price, name);
         return productRepository.getProductWithNameAndPriceGreaterThanNative(name, price);
+    }
+
+    @Override
+    public List<Product> getProductWithNameAndPriceRange(String name, double lowePrice, double upperPrice) {
+        return productRepository.getProductWithNameAndPriceRange(name, lowePrice, upperPrice);
     }
 }
