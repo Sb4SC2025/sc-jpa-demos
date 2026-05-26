@@ -69,6 +69,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProductWithNameAndPriceGreaterThan(String name, double price) {
-        return productRepository.getProductWithNameAndPriceGreaterThan(name, price);
+        //return productRepository.getProductWithNameAndPriceGreaterThan(name, price);
+        return productRepository.getProductWithNameAndPriceGreaterThanNative(name, price);
     }
 }

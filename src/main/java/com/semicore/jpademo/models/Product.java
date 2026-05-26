@@ -1,9 +1,15 @@
 package com.semicore.jpademo.models;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.Query;
 
 @Entity
 @Table(name = "products")
+@NamedQuery(name = "Product.getProductWithNameAndPriceGreaterThan",
+        query="SELECT p FROM Product p  WHERE name = :name and price > :price") // JPQL query
+@NamedNativeQuery(name = "Product.getProductWithNameAndPriceGreaterThanNative",
+        query="SELECT * FROM products  WHERE prod_name = :name and prod_price > :price",
+resultClass = Product.class) // Native SQL query
 public class Product {
         @Id
         @Column(name = "prod_id")
